@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to ngx-face-api-js!');
+    expect(page.getTitleText()).toEqual('Welcome to ngx-face-api-demo-app!');
   });
 
   afterEach(async () => {
