@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-face-api-js": [
+        "dist/ngx-face-api-js"
+      ],
+      "ngx-face-api-js/*": [
+        "dist/ngx-face-api-js/*"
+      ]
+    }
   }
 }

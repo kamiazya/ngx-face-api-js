@@ -134,6 +134,41 @@
           }
         }
       }
+    },
+    "ngx-face-api-js": {
+      "root": "projects/ngx-face-api-js",
+      "sourceRoot": "projects/ngx-face-api-js/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-face-api-js/tsconfig.lib.json",
+            "project": "projects/ngx-face-api-js/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-face-api-js/src/test.ts",
+            "tsConfig": "projects/ngx-face-api-js/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-face-api-js/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-face-api-js/tsconfig.lib.json",
+              "projects/ngx-face-api-js/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-face-api-demo-app"
