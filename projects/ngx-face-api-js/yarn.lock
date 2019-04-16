@@ -2,6 +2,15 @@
 # yarn lockfile v1
 
 
+"@angular/cdk@^7.3.7":
+  version "7.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.3.7.tgz#ce1ad53ba04beb9c8e950acc5691ea0143753764"
+  integrity sha512-xbXxhHHKGkVuW6K7pzPmvpJXIwpl0ykBnvA2g+/7Sgy5Pd35wCC+UtHD9RYczDM/mkygNxMQtagyCErwFnDtQA==
+  dependencies:
+    tslib "^1.7.1"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@tensorflow/tfjs-core@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-1.0.3.tgz#344f3fb1ed43c43b0e19e5e2764677770fd7a085"
@@ -36,6 +45,11 @@ face-api.js@^0.19.0:
     tfjs-image-recognition-base "^0.5.1"
     tslib "^1.9.3"
 
+parse5@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
+  integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
+
 seedrandom@2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.3.tgz#2438504dad33917314bff18ac4d794f16d6aaecc"
@@ -49,7 +63,7 @@ tfjs-image-recognition-base@^0.5.1:
     "@tensorflow/tfjs-core" "1.0.3"
     tslib "^1.9.3"
 
-tslib@^1.9.3:
+tslib@^1.7.1, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==

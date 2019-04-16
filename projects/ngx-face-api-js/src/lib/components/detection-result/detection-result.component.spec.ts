@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxFaceApiJsComponent } from './ngx-face-api-js.component';
+import { DetectionResultComponent } from './detection-result.component';
 
-describe('NgxFaceApiJsComponent', () => {
-  let component: NgxFaceApiJsComponent;
-  let fixture: ComponentFixture<NgxFaceApiJsComponent>;
+describe('DetectionResultComponent', () => {
+  let component: DetectionResultComponent;
+  let fixture: ComponentFixture<DetectionResultComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxFaceApiJsComponent ]
+      declarations: [ DetectionResultComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxFaceApiJsComponent);
+    fixture = TestBed.createComponent(DetectionResultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
