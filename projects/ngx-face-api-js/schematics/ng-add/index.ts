@@ -4,9 +4,14 @@ import {getWorkspace} from '@schematics/angular/utility/config';
 import {
   getProjectFromWorkspace,
   getProjectStyleFile,
+  hasNgModuleImport,
+  addModuleImportToRootModule,
+  getProjectMainFile,
 } from '@angular/cdk/schematics';
 import { Schema } from './Schema';
-import { red, italic } from '@angular-devkit/core/src/terminal';
+import { red, italic, bold } from '@angular-devkit/core/src/terminal';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+
 // import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 // import { red, yellow, bold } from '@angular-devkit/core/src/terminal';
 
@@ -16,6 +21,7 @@ export function ngAdd(options: Schema): Rule {
   return chain([
     addDevDependencies(),
     addCdkOverlayPrebuiltCssToAppStyles(options),
+    addNgxFaceApiJsModule(options),
   ]);
 }
 
@@ -35,6 +41,31 @@ export function addDevDependencies(): Rule {
 
 
     context.addTask(new NodePackageInstallTask());
+    return host;
+  };
+}
+
+function addNgxFaceApiJsModule(options: Schema) {
+  return (host: Tree) => {
+    const workspace = getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, options.project);
+    const appModulePath = getAppModulePath(host, getProjectMainFile(project));
+
+    const ngxFaceApiJsModuleName = 'NgxFaceApiJsModule';
+
+    if (hasNgModuleImport(host, appModulePath, ngxFaceApiJsModuleName)) {
+      return console.warn(red(
+        `Could not set up "${bold(ngxFaceApiJsModuleName)}" ` +
+        `because "${bold(ngxFaceApiJsModuleName)}" is already imported.`));
+    }
+
+    addModuleImportToRootModule(
+      host,
+      `NgxFaceApiJsModule.forRoot({ modelsUrl: '${options.modelsUrl}' })`,
+      'ngx-face-api-js',
+      project,
+    );
+
     return host;
   };
 }
