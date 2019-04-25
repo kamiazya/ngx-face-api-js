@@ -2,11 +2,11 @@ import { Rule, SchematicContext, Tree, SchematicsException, chain } from '@angul
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import {getWorkspace} from '@schematics/angular/utility/config';
 import {
-  getProjectFromWorkspace, getProjectTargetOptions,
-  // getProjectStyleFile,
-  // getProjectTargetOptions,
+  getProjectFromWorkspace,
+  getProjectStyleFile,
 } from '@angular/cdk/schematics';
 import { Schema } from './Schema';
+import { red, italic } from '@angular-devkit/core/src/terminal';
 // import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 // import { red, yellow, bold } from '@angular-devkit/core/src/terminal';
 
@@ -20,9 +20,9 @@ export function ngAdd(options: Schema): Rule {
 }
 
 export function addDevDependencies(): Rule {
-  return (tree: Tree, context: SchematicContext) => {
+  return (host: Tree, context: SchematicContext) => {
 
-    const buf = tree.read('package.json');
+    const buf = host.read('package.json');
     if (!buf) {
       throw new SchematicsException('cannot find package.json');
     }
@@ -31,30 +31,48 @@ export function addDevDependencies(): Rule {
       ...content.devDependencies,
       '@angular/cdk': 'latest',
     };
-    tree.overwrite('package.json', JSON.stringify(content, null, 2));
+    host.overwrite('package.json', JSON.stringify(content, null, 2));
 
 
     context.addTask(new NodePackageInstallTask());
-    return tree;
+    return host;
   };
 }
 
 export function addCdkOverlayPrebuiltCssToAppStyles(options: Schema): Rule {
-  return (tree: Tree, _: SchematicContext) => {
+  return (host: Tree, _: SchematicContext) => {
 
-    const workspace = getWorkspace(tree);
+    const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    const targetOptions = getProjectTargetOptions(project, 'build');
-
-    const stylesFile = tree.get(targetOptions.styles[0]);
-    if (stylesFile) {
-      tree.overwrite(stylesFile.path, [
-        stylesFile.content.toString(),
-        '@import \'~@angular/cdk/overlay-prebuilt.css\';',
-      ].join('\n'));
+    const styleFilePath = getProjectStyleFile(project);
+    if (!styleFilePath) {
+      console.warn(red(`Could not find the default style file for this project.`));
+      console.warn(red(`Please consider manually setting up the Roboto font in your CSS.`));
+      return;
     }
 
-    return tree;
+    const buffer = host.read(styleFilePath);
+
+    if (!buffer) {
+      console.warn(red(`Could not read the default style file within the project ` +
+        `(${italic(styleFilePath)})`));
+      console.warn(red(`Please consider manually setting up the Robot font.`));
+      return;
+    }
+
+    const content = buffer.toString();
+    const insertion = '\n@import \'~@angular/cdk/overlay-prebuilt.css\';';
+
+    if (content.includes(insertion)) {
+      return;
+    }
+
+    const recorder = host.beginUpdate(styleFilePath);
+
+    recorder.insertLeft(content.length, insertion);
+    host.commitUpdate(recorder);
+
+    return host;
   };
 }

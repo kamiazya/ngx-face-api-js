@@ -2,7 +2,7 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { getFileContent } from '@schematics/angular/utility/test';
 import * as path from 'path';
 import { getWorkspace } from '@schematics/angular/utility/config';
-import { getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
+import { getProjectFromWorkspace, getProjectStyleFile } from '@angular/cdk/schematics';
 
 
 const collectionPath = path.join(__dirname, '../collection.json');
@@ -49,9 +49,10 @@ describe('ngx-face-api-js-schematics', () => {
 
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
-    const targetOptions = getProjectTargetOptions(project, 'build');
-
-    const stylesScss = getFileContent(tree, targetOptions.styles[0]);
-    expect(stylesScss).toMatch('@import \'~@angular/cdk/overlay-prebuilt.css\'');
+    const styleFilePath = getProjectStyleFile(project);
+    if (styleFilePath) {
+      const stylesScss = getFileContent(tree, styleFilePath);
+      expect(stylesScss).toMatch('@import \'~@angular/cdk/overlay-prebuilt.css\'');
+    }
   });
 });
