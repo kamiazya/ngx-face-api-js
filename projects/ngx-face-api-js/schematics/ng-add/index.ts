@@ -59,9 +59,11 @@ function addNgxFaceApiJsModule(options: Schema) {
         `because "${bold(ngxFaceApiJsModuleName)}" is already imported.`));
     }
 
+    const modelsUrl = 'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights';
+
     addModuleImportToRootModule(
       host,
-      `NgxFaceApiJsModule.forRoot({ modelsUrl: '${options.modelsUrl}' })`,
+      `NgxFaceApiJsModule.forRoot({ modelsUrl: '${modelsUrl}' })`,
       'ngx-face-api-js',
       project,
     );
