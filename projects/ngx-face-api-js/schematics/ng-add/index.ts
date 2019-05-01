@@ -19,13 +19,13 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 // per file.
 export function ngAdd(options: Schema): Rule {
   return chain([
-    addDevDependencies(),
+    addDependencies(),
     addCdkOverlayPrebuiltCssToAppStyles(options),
     addNgxFaceApiJsModule(options),
   ]);
 }
 
-export function addDevDependencies(): Rule {
+export function addDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
 
     const buf = host.read('package.json');
@@ -33,6 +33,10 @@ export function addDevDependencies(): Rule {
       throw new SchematicsException('cannot find package.json');
     }
     const content = JSON.parse(buf.toString('utf-8'));
+    content.dependencies = {
+      ...content.dependencies,
+      'face-api.js': '^0.19.0',
+    };
     content.devDependencies = {
       ...content.devDependencies,
       '@angular/cdk': 'latest',

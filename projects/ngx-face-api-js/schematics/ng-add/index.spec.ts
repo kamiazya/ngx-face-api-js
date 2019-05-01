@@ -33,7 +33,7 @@ function createTestApp(appOptions: any = { }): UnitTestTree {
 }
 
 describe('ngx-face-api-js-schematics', () => {
-  it('addDevDependencies works', () => {
+  it('addDependencies works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
     const tree = runner.runSchematic('ng-add', {}, createTestApp());
 
@@ -42,6 +42,7 @@ describe('ngx-face-api-js-schematics', () => {
     const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
 
     expect(packageJson.devDependencies['@angular/cdk']).toBe('latest');
+    expect(packageJson.dependencies['face-api.js']).toBe('^0.19.0');
   });
 
   it('addCdkOverlayPrebuiltCssToAppStyles works', () => {
