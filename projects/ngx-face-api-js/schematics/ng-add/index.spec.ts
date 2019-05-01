@@ -45,6 +45,18 @@ describe('ngx-face-api-js-schematics', () => {
     expect(packageJson.dependencies['face-api.js']).toBe('^0.19.0');
   });
 
+  it('addBrowserIgnorePackageSetting works', () => {
+    const runner = new SchematicTestRunner('schematics', collectionPath);
+    const tree = runner.runSchematic('ng-add', {}, createTestApp());
+
+    expect(tree.files).toContain('/package.json');
+
+    const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
+
+    expect(packageJson.browser.fs).toBe(false);
+    expect(packageJson.browser.crypto).toBe(false);
+  });
+
   it('addCdkOverlayPrebuiltCssToAppStyles works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
     const tree = runner.runSchematic('ng-add', {}, createTestApp());
