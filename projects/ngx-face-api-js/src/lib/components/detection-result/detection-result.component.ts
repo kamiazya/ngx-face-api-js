@@ -33,7 +33,7 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
     private task: DetectTask,
     private el: ElementRef,
     private renderer: Renderer2,
-    private faceDetector2: FaceDetectorService,
+    private faceDetector: FaceDetectorService,
   ) { }
 
   private convertResultToArray(result: any): any[] {
@@ -45,7 +45,7 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(this.faceDetector2.detect(this.task), this.resize$.pipe(startWith('init')))
+      combineLatest(this.faceDetector.detect(this.task), this.resize$.pipe(startWith('init')))
         .pipe(
           map(([result]) => this.convertResultToArray(result)),
         )

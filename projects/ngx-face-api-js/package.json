@@ -29,8 +29,8 @@
     "test:schematics": "npm run build:schematics && jasmine schematics/**/*.spec.js"
   },
   "dependencies": {
-    "face-api.js": "^0.19.0",
-    "@angular/cdk": "^7.2.0"
+    "@angular/cdk": "^7.3.7",
+    "face-api.js": "^0.19.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "^7.3.8",

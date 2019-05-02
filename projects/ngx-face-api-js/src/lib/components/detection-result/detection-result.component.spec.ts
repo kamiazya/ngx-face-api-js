@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetectionResultComponent } from './detection-result.component';
+import { FaceDetectorService, ModelLoaderService } from '../../services';
+import { DetectTask } from '../../classes';
+import { ModelsUrl } from '../../tokens';
 
 describe('DetectionResultComponent', () => {
   let component: DetectionResultComponent;
@@ -8,6 +11,21 @@ describe('DetectionResultComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: ModelsUrl,
+          useValue: '/',
+        },
+        FaceDetectorService,
+        ModelLoaderService,
+        {
+          provide: DetectTask,
+          useValue: new DetectTask({
+            type: 'all',
+            tokens: [],
+          }),
+        }
+      ],
       declarations: [ DetectionResultComponent ]
     })
     .compileComponents();
