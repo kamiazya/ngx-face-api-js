@@ -171,5 +171,8 @@
       }
     }
   },
-  "defaultProject": "ngx-face-api-demo-app"
+  "defaultProject": "ngx-face-api-demo-app",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
