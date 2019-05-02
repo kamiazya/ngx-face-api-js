@@ -1,6 +1,6 @@
 {
   "name": "ngx-face-api-js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Angular directives for face detection and face recognition in the browser. It is a wrapper for face-api.js, so it is not dependent on the browser implementation.",
   "author": "kamiazya <yuki@kamiazya.tech>",
   "license": "MIT",
