@@ -26,15 +26,15 @@ export class FaceDetectorService {
           switchMap(() => this.modelLoader.loadForFeature(task.tokens)),
           switchMap(() => interval(300)),
           switchMap(() => task.detect(this.option)),
+          shareReplay(1),
         );
     }
     return of(task)
       .pipe(
-        switchMap(async (t) => {
-          await this.modelLoader.loadForFeature(t.tokens);
-          return t;
-        }),
-        switchMap((t) => t.detect(this.option)),
+        switchMap(async (t) => (await t.target)),
+        switchMap((image) => fromEvent(image, 'load')),
+        switchMap(async () => await this.modelLoader.loadForFeature(task.tokens)),
+        switchMap(() => task.detect(this.option)),
         shareReplay(1),
       );
   }
