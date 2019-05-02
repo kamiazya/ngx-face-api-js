@@ -1,4 +1,5 @@
 # NgxFaceApiJs
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8aa3dc5540ff42d595d7421cf31a0956)](https://app.codacy.com/app/kamiazya/ngx-face-api-js?utm_source=github.com&utm_medium=referral&utm_content=kamiazya/ngx-face-api-js&utm_campaign=Badge_Grade_Settings)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkamiazya%2Fngx-face-api-js.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkamiazya%2Fngx-face-api-js?ref=badge_shield)
 
 
