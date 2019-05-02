@@ -35,6 +35,7 @@
     "report-coverage": "codecov -f coverage/ngx-face-api-js/lcov.info",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "docs": "compodoc -p projects/ngx-face-api-js/tsconfig.lib.json --theme material -d docs",
     "prepare:lib": "run-s build:lib:prod prepare:lib:copy:license prepare:lib:copy:readme",
     "prepare:lib:copy:license": "cpx LICENSE dist/ngx-face-api-js/",
     "prepare:lib:copy:readme": "cpx README.md dist/ngx-face-api-js/"
