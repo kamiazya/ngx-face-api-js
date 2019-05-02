@@ -53,12 +53,10 @@ export class NgxFaceApiJsModule {
       {
         provide: ModelLoaderService,
         useClass: ModelLoaderService,
-        deps: [ModelsUrl],
       },
       {
         provide: FaceDetectorService,
         useClass: FaceDetectorService,
-        deps: [ModelsUrl, ModelLoaderService],
       }
     );
     return { ngModule: NgxFaceApiJsModule, providers };
