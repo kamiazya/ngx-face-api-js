@@ -1,6 +1,25 @@
 {
   "name": "ngx-face-api-js",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "description": "Angular directives for face detection and face recognition in the browser. It is a wrapper for face-api.js, so it is not dependent on the browser implementation.",
+  "author": "kamiazya <yuki@kamiazya.tech>",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "directive",
+    "face-recognition",
+    "emotion-recognition",
+    "face-detection",
+    "tesorflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kamiazya/ngx-face-api-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kamiazya/ngx-face-api-js/issues"
+  },
+  "homepage": "https://github.com/kamiazya/ngx-face-api-js",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"

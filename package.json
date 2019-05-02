@@ -1,6 +1,17 @@
 {
-  "name": "ngx-face-api-demo-app",
+  "name": "ngx-face-api-js-demo-app",
   "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "kamiazya <yuki@kamiazya.tech>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kamiazya/ngx-face-api-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kamiazya/ngx-face-api-js/issues"
+  },
+  "homepage": "https://github.com/kamiazya/ngx-face-api-js",
   "scripts": {
     "ng": "ng",
     "start": "run-s build:lib schematics:link start:demo-app",
@@ -21,9 +32,11 @@
     "schematics:copy": "cpx \"projects/ngx-face-api-js/schematics/**/*.{json,d.ts,js,js.map}\" dist/ngx-face-api-js/schematics",
     "schematics:ng-add": "schematics ngx-face-api-js:ng-add",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prepare:lib": "run-s build:lib:prod release:copy:license release:copy:readme",
+    "prepare:lib:copy:license": "cpx LICENSE dist/ngx-face-api-js/",
+    "prepare:lib:copy:readme": "cpx README.md dist/ngx-face-api-js/"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
