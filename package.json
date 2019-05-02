@@ -33,7 +33,7 @@
     "schematics:ng-add": "schematics ngx-face-api-js:ng-add",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepare:lib": "run-s build:lib:prod release:copy:license release:copy:readme",
+    "prepare:lib": "run-s build:lib:prod prepare:lib:copy:license prepare:lib:copy:readme",
     "prepare:lib:copy:license": "cpx LICENSE dist/ngx-face-api-js/",
     "prepare:lib:copy:readme": "cpx README.md dist/ngx-face-api-js/"
   },
