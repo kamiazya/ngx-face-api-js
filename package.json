@@ -36,9 +36,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "docs": "compodoc -p projects/ngx-face-api-js/tsconfig.lib.json --theme material -d docs",
-    "prepare:lib": "run-s build:lib:prod prepare:lib:copy:license prepare:lib:copy:readme",
+    "prepare:lib": "run-s build:lib:prod prepare:lib:copy:license prepare:lib:copy:readme prepare:lib:copy:media",
     "prepare:lib:copy:license": "cpx LICENSE dist/ngx-face-api-js/",
-    "prepare:lib:copy:readme": "cpx README.md dist/ngx-face-api-js/"
+    "prepare:lib:copy:readme": "cpx README.md dist/ngx-face-api-js/",
+    "prepare:lib:copy:media": "mkdir -p dist/ngx-face-api-js/media/ && cpx \"media/*.png\" dist/ngx-face-api-js/media/"
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",
