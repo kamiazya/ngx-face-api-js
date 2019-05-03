@@ -6,11 +6,55 @@ Angular directives for face detection and face recognition in the browser. It is
 
 [![NPM](https://nodei.co/npm/ngx-face-api-js.png)](https://nodei.co/npm/ngx-face-api-js/)
 
-## Demo
+## See
 
-### Detect Faces by Image
+### Background
 
-[StackBlitz](https://ngx-face-api-js-demo.stackblitz.io)([Editor](https://stackblitz.com/edit/ngx-face-api-js-demo?embed=1&file=src/app/app.component.html))
+* [face-api.js](https://github.com/justadudewhohacks/face-api.js)
+* [TensorFlow.js](https://github.com/tensorflow/tfjs-core)
+
+### Demo
+
+* [Detect Faces by Image -- StackBlitz](https://ngx-face-api-js-demo.stackblitz.io)([Editor](https://stackblitz.com/edit/ngx-face-api-js-demo?embed=1&file=src/app/app.component.html))
+
+### Documantation
+
+* [compodoc](https://kamiazya.github.io/ngx-face-api-js/)
+
+## Usage
+
+### Detect All Faces
+
+```html
+<img allFaces [src]="imageSrc" width="300px"/>
+```
+
+![Detect faces](./media/ngx-face-api-js-demo-detect-faces.png)
+
+### Detect Face With Expressions and Landmarks
+
+```html
+<img singleFace [with]="['expressions', 'landmarks']" [src]="imageSrc" width="300px"/>
+
+```
+
+![Detected Face With Expressions and Landmarks](./media/ngx-face-api-js-demo-with-expressions-and-landmarks.png)
+
+## Installation
+
+### By `ng-add` Schematics
+
+```bash
+$ ng add ngx-face-api-js
+...
+UPDATE package.json (1457 bytes)
+UPDATE src/styles.css (126 bytes)
+UPDATE src/app/app.module.ts (497 bytes)
+```
+
+### By Manual
+
+See [Wiki](https://github.com/kamiazya/ngx-face-api-js/wiki/Manual-Installation).
 
 ## License
 
