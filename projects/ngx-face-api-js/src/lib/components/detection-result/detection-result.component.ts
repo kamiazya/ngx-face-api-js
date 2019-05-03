@@ -70,8 +70,8 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
 
     this.canvas.width = width;
     this.canvas.height = height;
-    this.renderer.setStyle(this.el.nativeElement, 'width', width);
-    this.renderer.setStyle(this.el.nativeElement, 'height', height);
+    this.renderer.setStyle(this.canvas, 'width', `${width}px`);
+    this.renderer.setStyle(this.canvas, 'height', `${height}px`);
     if (this.task.tokens.length >= 1) {
       faceapi.drawDetection(this.canvas, detectionsForSize, { withScore: false });
 
