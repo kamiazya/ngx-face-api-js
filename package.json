@@ -14,6 +14,7 @@
   "homepage": "https://github.com/kamiazya/ngx-face-api-js",
   "scripts": {
     "ng": "ng",
+    "prettier": "prettier --write \"**/*.{js,json,css,md,ts,html,component.html}\"",
     "start": "run-s build:lib schematics:link start:demo-app",
     "start:demo-app": "ng serve",
     "build": "ng build",
@@ -69,6 +70,7 @@
     "codecov": "^3.3.0",
     "codelyzer": "~4.5.0",
     "cpx": "^1.5.0",
+    "husky": "2.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
@@ -76,17 +78,31 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "lint-staged": "8.1.6",
     "ng-packagr": "^4.2.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "1.17.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.34.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "1.18.0",
     "typescript": "~3.2.2"
   },
   "browser": {
     "fs": false,
     "crypto": false
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md,ts,html,component.html}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
