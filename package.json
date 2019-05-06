@@ -25,7 +25,7 @@
     "build:lib:schematics": "yarn --cwd projects/ngx-face-api-js build:schematics",
     "install:lib": "yarn --cwd projects/ngx-face-api-js install",
     "test": "yarn test:demo-app",
-    "test:all": "npm-run-all test:demo-app:single-run test:lib:single-run test:lib:schematics",
+    "test:all": "npm-run-all build:lib test:demo-app:single-run test:lib:single-run test:lib:schematics",
     "test:demo-app": "ng test",
     "test:demo-app:single-run": "ng test ngx-face-api-demo-app --watch=false --code-coverage --browsers ChromeHeadless",
     "test:lib:single-run": "ng test ngx-face-api-js --watch=false --code-coverage --browsers ChromeHeadless",
