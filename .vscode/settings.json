@@ -1,6 +1,7 @@
 {
-  "tslint.exclude": [
-    "**/dist/**",
-    "**/node_modules/**"
-  ]
+  "tslint.exclude": ["**/dist/**", "**/node_modules/**"],
+  "markdownlint.config": {
+    "default": true,
+    "MD026": false
+  }
 }
