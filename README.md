@@ -14,7 +14,7 @@ Make face and emotion recognition features easy to use in Angular projects by us
 
 - **Recognize faces / emotions** in Angular project.
 - **Works in a Mobile**.
-- **No Script reqired**, you only embed attribute to img/video tag.
+- **No Script/Styles reqired**, you only embed attribute to img/video tag.
 - **Schematics Support**, you can quickly set up a project using the `ng add` command.
 
 ### How it works?
