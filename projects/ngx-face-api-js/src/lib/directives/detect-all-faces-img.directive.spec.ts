@@ -4,23 +4,18 @@ import { NgxFaceApiJsModule } from '../ngx-face-api-js.module';
 
 // Simple test component that will not in the actual app
 @Component({
-  template: '<img allFaces>'
+  template: '<img allFaces>',
 })
-class TestComponent { }
+class TestComponent {}
 
 describe('DetectAllFacesDirective', () => {
-
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxFaceApiJsModule.forRoot({ modelsUrl: '/' }),
-      ],
-      declarations: [
-        TestComponent,
-      ],
+      imports: [NgxFaceApiJsModule.forRoot({ modelsUrl: '/' })],
+      declarations: [TestComponent],
     });
 
     fixture = TestBed.createComponent(TestComponent);
