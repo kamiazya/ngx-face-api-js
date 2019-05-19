@@ -23,8 +23,8 @@ export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
     });
   }
 
-  private createOverlay() {
-    const positionStrategy = this.overlay
+  private get orverlayPositionStrategy() {
+    return this.overlay
       .position()
       .flexibleConnectedTo(this.el)
       .withPositions([
@@ -37,9 +37,12 @@ export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
       ])
       .withFlexibleDimensions(false)
       .withLockedPosition(true);
+  }
+
+  private createOverlay() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     const config = new OverlayConfig({
-      positionStrategy,
+      positionStrategy: this.orverlayPositionStrategy,
       scrollStrategy,
       hasBackdrop: false,
     });
