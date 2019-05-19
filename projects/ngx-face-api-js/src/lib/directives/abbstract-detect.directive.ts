@@ -22,9 +22,9 @@ export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
       realtime: this.stream,
     });
   }
-  ngAfterViewInit() {
-    this.task.resolveTarget(this.el.nativeElement);
-    const positionStrategy = this.overlay
+
+  private get orverlayPositionStrategy() {
+    return this.overlay
       .position()
       .flexibleConnectedTo(this.el)
       .withPositions([
@@ -37,14 +37,20 @@ export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
       ])
       .withFlexibleDimensions(false)
       .withLockedPosition(true);
+  }
+
+  private createOverlay() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     const config = new OverlayConfig({
-      positionStrategy,
+      positionStrategy: this.orverlayPositionStrategy,
       scrollStrategy,
       hasBackdrop: false,
     });
-    const overlayRef = this.overlay.create(config);
-    const injector = Injector.create({
+    return this.overlay.create(config);
+  }
+
+  private createInjector(): Injector {
+    return Injector.create({
       parent: this.injector,
       providers: [
         {
@@ -53,6 +59,12 @@ export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
         },
       ],
     });
+  }
+
+  ngAfterViewInit() {
+    this.task.resolveTarget(this.el.nativeElement);
+    const overlayRef = this.createOverlay();
+    const injector = this.createInjector();
     const portal = new ComponentPortal(
       DetectionResultComponent,
       undefined,
