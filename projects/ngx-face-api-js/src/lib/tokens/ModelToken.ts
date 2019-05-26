@@ -1,11 +1,10 @@
-export type ModelToken
-  = 'SsdMobilenetv1Model'
+export type ModelToken =
+  | 'SsdMobilenetv1Model'
   | 'MtcnnModel'
   | 'FaceExpressionModel'
   | 'FaceLandmarkModel'
   | 'FaceRecognitionModel'
-  | 'TinyFaceDetectorModel'
-  ;
+  | 'TinyFaceDetectorModel';
 
 export const SsdMobilenetv1Model: ModelToken = 'SsdMobilenetv1Model';
 export const MtcnnModel: ModelToken = 'MtcnnModel';

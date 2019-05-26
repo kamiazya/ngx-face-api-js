@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, OnDestroy, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  OnDestroy,
+  HostListener,
+} from '@angular/core';
 import { Subscription, Subject, combineLatest } from 'rxjs';
 
 import * as faceapi from 'face-api.js';
@@ -8,10 +16,9 @@ import { FaceDetectorService } from '../../services/face-detector.service';
 
 @Component({
   templateUrl: './detection-result.component.html',
-  styleUrls: ['./detection-result.component.scss']
+  styleUrls: ['./detection-result.component.scss'],
 })
 export class DetectionResultComponent implements OnInit, OnDestroy {
-
   subscription = new Subscription();
 
   @ViewChild('canvas')
@@ -20,7 +27,6 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
   private get canvas(): HTMLCanvasElement {
     return this.canvasEl.nativeElement;
   }
-
 
   private resize$ = new Subject();
 
@@ -34,7 +40,7 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private renderer: Renderer2,
     private faceDetector: FaceDetectorService,
-  ) { }
+  ) {}
 
   private convertResultToArray(result: any): any[] {
     if (Array.isArray(result)) {
@@ -45,10 +51,11 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(this.faceDetector.detect(this.task), this.resize$.pipe(startWith('init')))
-        .pipe(
-          map(([result]) => this.convertResultToArray(result)),
-        )
+      combineLatest(
+        this.faceDetector.detect(this.task),
+        this.resize$.pipe(startWith('init')),
+      )
+        .pipe(map(([result]) => this.convertResultToArray(result)))
         .subscribe(result => this.draw(result)),
     );
   }
@@ -65,21 +72,29 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
     }
 
     const detectionsForSize = faceapi.resizeResults(
-      results.map(result => result instanceof faceapi.FaceDetection ? result : result.detection),
-      { width, height });
+      results.map(result =>
+        result instanceof faceapi.FaceDetection ? result : result.detection,
+      ),
+      { width, height },
+    );
 
     this.canvas.width = width;
     this.canvas.height = height;
     this.renderer.setStyle(this.canvas, 'width', `${width}px`);
     this.renderer.setStyle(this.canvas, 'height', `${height}px`);
     if (this.task.tokens.length >= 1) {
-      faceapi.drawDetection(this.canvas, detectionsForSize, { withScore: false });
+      faceapi.drawDetection(this.canvas, detectionsForSize, {
+        withScore: false,
+      });
 
       const resizeResults = faceapi.resizeResults(results, { width, height });
       if (this.task.tokens.includes('expressions')) {
         faceapi.drawFaceExpressions(
           this.canvas,
-          resizeResults.map(({ detection, expressions }) => ({ position: detection.box, expressions })),
+          resizeResults.map(({ detection, expressions }) => ({
+            position: detection.box,
+            expressions,
+          })),
         );
       }
 
@@ -91,12 +106,11 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
             lineWidth: 2,
             drawLines: true,
             color: 'green',
-          }
+          },
         );
       }
     } else {
       faceapi.drawDetection(this.canvas, detectionsForSize);
     }
   }
-
 }

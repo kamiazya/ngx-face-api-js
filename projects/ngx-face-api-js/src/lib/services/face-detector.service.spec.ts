@@ -4,11 +4,11 @@ import { FaceDetectorService } from './face-detector.service';
 import { NgxFaceApiJsModule } from '../ngx-face-api-js.module';
 
 describe('FaceDetectorService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [
-      NgxFaceApiJsModule.forRoot({ modelsUrl: '/' }),
-    ],
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [NgxFaceApiJsModule.forRoot({ modelsUrl: '/' })],
+    }),
+  );
 
   it('should be created', () => {
     const service: FaceDetectorService = TestBed.get(FaceDetectorService);

@@ -2,8 +2,9 @@ import * as faceapi from 'face-api.js';
 import { TaskTypeToken, FeatureToken } from '../tokens';
 
 export class DetectTask {
-
-  public get resolveTarget(): (el: HTMLImageElement | HTMLVideoElement) => void {
+  public get resolveTarget(): (
+    el: HTMLImageElement | HTMLVideoElement,
+  ) => void {
     return this.targetResolver;
   }
 
@@ -12,15 +13,16 @@ export class DetectTask {
   public readonly realtime: boolean;
 
   constructor(option: {
-    type: TaskTypeToken,
-    tokens: FeatureToken[],
-    realtime?: boolean,
-
+    type: TaskTypeToken;
+    tokens: FeatureToken[];
+    realtime?: boolean;
   }) {
     this.type = option.type;
     this.tokens = option.tokens;
     this.realtime = option.realtime || false;
-    this.target = new Promise<HTMLImageElement | HTMLVideoElement>(resolver => this.targetResolver = resolver);
+    this.target = new Promise<HTMLImageElement | HTMLVideoElement>(
+      resolver => (this.targetResolver = resolver),
+    );
   }
 
   public target: Promise<HTMLImageElement | HTMLVideoElement>;
@@ -44,14 +46,30 @@ export class DetectTask {
       t = faceapi.detectSingleFace(await this.target, option || undefined);
     }
 
-    if (this.isMatchPattern(['expressions', 'landmarks', 'descriptors'], this.tokens)) {
+    if (
+      this.isMatchPattern(
+        ['expressions', 'landmarks', 'descriptors'],
+        this.tokens,
+      )
+    ) {
       if (t instanceof faceapi.DetectSingleFaceTask) {
-        return t.withFaceExpressions().withFaceLandmarks().withFaceDescriptor().run();
+        return t
+          .withFaceExpressions()
+          .withFaceLandmarks()
+          .withFaceDescriptor()
+          .run();
       } else if (t instanceof faceapi.DetectAllFacesTask) {
-        return t.withFaceExpressions().withFaceLandmarks().withFaceDescriptors().run();
+        return t
+          .withFaceExpressions()
+          .withFaceLandmarks()
+          .withFaceDescriptors()
+          .run();
       }
     } else if (this.isMatchPattern(['expressions', 'landmarks'], this.tokens)) {
-      return t.withFaceExpressions().withFaceLandmarks().run();
+      return t
+        .withFaceExpressions()
+        .withFaceLandmarks()
+        .run();
     } else if (this.isMatchPattern(['expressions'], this.tokens)) {
       return t.withFaceExpressions().run();
     } else if (this.isMatchPattern(['landmarks'], this.tokens)) {
@@ -59,5 +77,4 @@ export class DetectTask {
     }
     return t.run();
   }
-
 }

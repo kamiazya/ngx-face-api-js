@@ -1,4 +1,1 @@
-export type TaskTypeToken
-  = 'all'
-  | 'single'
-  ;
+export type TaskTypeToken = 'all' | 'single';

@@ -7,8 +7,5 @@
       "face-api.js": "face-api.js"
     }
   },
-  "whitelistedNonPeerDependencies": [
-    "angular",
-    "face-api.js"
-  ]
+  "whitelistedNonPeerDependencies": ["angular", "face-api.js"]
 }

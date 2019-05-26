@@ -5,14 +5,15 @@ import { AppComponent } from './app.component';
 import { NgxFaceApiJsModule } from 'ngx-face-api-js';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    NgxFaceApiJsModule.forRoot({ modelsUrl: 'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights' })
+    NgxFaceApiJsModule.forRoot({
+      modelsUrl:
+        'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

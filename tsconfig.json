@@ -11,20 +11,11 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "ngx-face-api-js": [
-        "dist/ngx-face-api-js"
-      ],
-      "ngx-face-api-js/*": [
-        "dist/ngx-face-api-js/*"
-      ]
+      "ngx-face-api-js": ["dist/ngx-face-api-js"],
+      "ngx-face-api-js/*": ["dist/ngx-face-api-js/*"]
     }
   }
 }

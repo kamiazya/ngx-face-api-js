@@ -24,11 +24,10 @@ describe('DetectionResultComponent', () => {
             type: 'all',
             tokens: [],
           }),
-        }
+        },
       ],
-      declarations: [ DetectionResultComponent ]
-    })
-    .compileComponents();
+      declarations: [DetectionResultComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

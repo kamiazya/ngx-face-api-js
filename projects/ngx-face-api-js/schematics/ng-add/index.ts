@@ -1,6 +1,12 @@
-import { Rule, SchematicContext, Tree, SchematicsException, chain } from '@angular-devkit/schematics';
+import {
+  Rule,
+  SchematicContext,
+  Tree,
+  SchematicsException,
+  chain,
+} from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import {getWorkspace} from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/config';
 import {
   getProjectFromWorkspace,
   getProjectStyleFile,
@@ -28,7 +34,6 @@ export function ngAdd(options: Schema): Rule {
 
 export function addDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
-
     const buf = host.read('package.json');
     if (!buf) {
       throw new SchematicsException('cannot find package.json');
@@ -44,7 +49,6 @@ export function addDependencies(): Rule {
     };
     host.overwrite('package.json', JSON.stringify(content, null, 2));
 
-
     context.addTask(new NodePackageInstallTask());
     return host;
   };
@@ -52,7 +56,6 @@ export function addDependencies(): Rule {
 
 function addBrowserIgnorePackageSetting(): Rule {
   return (host: Tree, _: SchematicContext) => {
-
     const buf = host.read('package.json');
     if (!buf) {
       throw new SchematicsException('cannot find package.json');
@@ -78,12 +81,16 @@ function addNgxFaceApiJsModule(options: Schema) {
     const ngxFaceApiJsModuleName = 'NgxFaceApiJsModule';
 
     if (hasNgModuleImport(host, appModulePath, ngxFaceApiJsModuleName)) {
-      return console.warn(red(
-        `Could not set up "${bold(ngxFaceApiJsModuleName)}" ` +
-        `because "${bold(ngxFaceApiJsModuleName)}" is already imported.`));
+      return console.warn(
+        red(
+          `Could not set up "${bold(ngxFaceApiJsModuleName)}" ` +
+            `because "${bold(ngxFaceApiJsModuleName)}" is already imported.`,
+        ),
+      );
     }
 
-    const modelsUrl = 'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights';
+    const modelsUrl =
+      'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights';
 
     addModuleImportToRootModule(
       host,
@@ -98,28 +105,35 @@ function addNgxFaceApiJsModule(options: Schema) {
 
 export function addCdkOverlayPrebuiltCssToAppStyles(options: Schema): Rule {
   return (host: Tree, _: SchematicContext) => {
-
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     const styleFilePath = getProjectStyleFile(project);
     if (!styleFilePath) {
-      console.warn(red(`Could not find the default style file for this project.`));
-      console.warn(red(`Please consider manually setting up the Roboto font in your CSS.`));
+      console.warn(
+        red(`Could not find the default style file for this project.`),
+      );
+      console.warn(
+        red(`Please consider manually setting up the Roboto font in your CSS.`),
+      );
       return;
     }
 
     const buffer = host.read(styleFilePath);
 
     if (!buffer) {
-      console.warn(red(`Could not read the default style file within the project ` +
-        `(${italic(styleFilePath)})`));
+      console.warn(
+        red(
+          `Could not read the default style file within the project ` +
+            `(${italic(styleFilePath)})`,
+        ),
+      );
       console.warn(red(`Please consider manually setting up the Robot font.`));
       return;
     }
 
     const content = buffer.toString();
-    const insertion = '\n@import \'~@angular/cdk/overlay-prebuilt.css\';';
+    const insertion = "\n@import '~@angular/cdk/overlay-prebuilt.css';";
 
     if (content.includes(insertion)) {
       return;

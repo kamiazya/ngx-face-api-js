@@ -1,14 +1,20 @@
-import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import {
+  SchematicTestRunner,
+  UnitTestTree,
+} from '@angular-devkit/schematics/testing';
 import { getFileContent } from '@schematics/angular/utility/test';
 import * as path from 'path';
 import { getWorkspace } from '@schematics/angular/utility/config';
-import { getProjectFromWorkspace, getProjectStyleFile, getProjectMainFile } from '@angular/cdk/schematics';
+import {
+  getProjectFromWorkspace,
+  getProjectStyleFile,
+  getProjectMainFile,
+} from '@angular/cdk/schematics';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
-function createTestApp(appOptions: any = { }): UnitTestTree {
+function createTestApp(appOptions: any = {}): UnitTestTree {
   const baseRunner = new SchematicTestRunner('schematics', collectionPath);
 
   const workspaceTree = baseRunner.runExternalSchematic(
@@ -66,7 +72,9 @@ describe('ngx-face-api-js-schematics', () => {
     const styleFilePath = getProjectStyleFile(project);
     if (styleFilePath) {
       const stylesScss = getFileContent(tree, styleFilePath);
-      expect(stylesScss).toMatch('@import \'~@angular/cdk/overlay-prebuilt.css\'');
+      expect(stylesScss).toMatch(
+        "@import '~@angular/cdk/overlay-prebuilt.css'",
+      );
     }
   });
 
