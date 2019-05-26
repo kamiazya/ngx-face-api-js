@@ -73,7 +73,7 @@ describe('ngx-face-api-js-schematics', () => {
     if (styleFilePath) {
       const stylesScss = getFileContent(tree, styleFilePath);
       expect(stylesScss).toMatch(
-        "@import '~@angular/cdk/overlay-prebuilt.css'",
+        `@import '~@angular/cdk/overlay-prebuilt.css'`,
       );
     }
   });

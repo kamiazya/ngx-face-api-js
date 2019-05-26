@@ -133,7 +133,7 @@ export function addCdkOverlayPrebuiltCssToAppStyles(options: Schema): Rule {
     }
 
     const content = buffer.toString();
-    const insertion = "\n@import '~@angular/cdk/overlay-prebuilt.css';";
+    const insertion = `\n@import '~@angular/cdk/overlay-prebuilt.css';`;
 
     if (content.includes(insertion)) {
       return;
