@@ -54,21 +54,21 @@ export class DetectTask {
     ) {
       if (t instanceof faceapi.DetectSingleFaceTask) {
         return t
-          .withFaceExpressions()
           .withFaceLandmarks()
+          .withFaceExpressions()
           .withFaceDescriptor()
           .run();
       } else if (t instanceof faceapi.DetectAllFacesTask) {
         return t
-          .withFaceExpressions()
           .withFaceLandmarks()
+          .withFaceExpressions()
           .withFaceDescriptors()
           .run();
       }
     } else if (this.isMatchPattern(['expressions', 'landmarks'], this.tokens)) {
       return t
-        .withFaceExpressions()
         .withFaceLandmarks()
+        .withFaceExpressions()
         .run();
     } else if (this.isMatchPattern(['expressions'], this.tokens)) {
       return t.withFaceExpressions().run();

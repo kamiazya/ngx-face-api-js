@@ -379,13 +379,13 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-face-api.js@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/face-api.js/-/face-api.js-0.19.0.tgz#b7120b7f432ca3db56818c5600e9bc37de5beb60"
-  integrity sha512-XbEIqqnLzlVIkvtLffFIl/Ltit3VAnJ1B3aFEc28pnkNVvqzJnBJbZVgbJ0JTvaafdSPJ5pFufC2t0KZJhwdpw==
+face-api.js@~0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/face-api.js/-/face-api.js-0.20.0.tgz#4956540c551080dab7de596857cefb3b34875305"
+  integrity sha512-9yDRChHdqT61AI+bGrNz5PJDHZl8+6CD4hoMChlteHAYInZIOEMhM6Wbn+2YcLVW+rUhufhanMQ9JjHV+x3ATg==
   dependencies:
     "@tensorflow/tfjs-core" "1.0.3"
-    tfjs-image-recognition-base "^0.5.1"
+    tfjs-image-recognition-base "^0.6.0"
     tslib "^1.9.3"
 
 fast-deep-equal@^2.0.1:
@@ -1270,10 +1270,10 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
-tfjs-image-recognition-base@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/tfjs-image-recognition-base/-/tfjs-image-recognition-base-0.5.1.tgz#c98ec31e77eedc2d5f0a2b257fe6b75aa9a26a8d"
-  integrity sha512-xk1feiuWiX56PZ4sK20rcVvqwPXdxzAV3TDCdeCQV/yPYDyq1lU98JBDUliX1g6o8jL5v4f6yyn3A5tq9kbCpg==
+tfjs-image-recognition-base@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/tfjs-image-recognition-base/-/tfjs-image-recognition-base-0.6.0.tgz#3522dda57e18ff8988e1c277cc1240c00faca687"
+  integrity sha512-wFk3ivWjdQwsXgEfU1PdTf3smve2AbCjiwJKrq9lDGmKh75aL8UIy0bVNa15r+8sFaT4vJz/9AKOSI0w78wW0g==
   dependencies:
     "@tensorflow/tfjs-core" "1.0.3"
     tslib "^1.9.3"
