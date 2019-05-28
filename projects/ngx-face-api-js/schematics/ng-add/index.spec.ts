@@ -39,21 +39,35 @@ function createTestApp(appOptions: any = {}): UnitTestTree {
 }
 
 describe('ngx-face-api-js-schematics', () => {
-  it('addDependencies works', () => {
+  it('addDependencies works face-api.js', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-add', {}, createTestApp());
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, createTestApp())
+      .toPromise();
 
     expect(tree.files).toContain('/package.json');
 
     const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
-
-    expect(packageJson.devDependencies['@angular/cdk']).toBe('latest');
-    expect(packageJson.dependencies['face-api.js']).toBe('^0.19.0');
+    expect(packageJson.dependencies['face-api.js']).toBe('~0.20.0');
   });
 
-  it('addBrowserIgnorePackageSetting works', () => {
+  it('addDependencies works @angular/cdk', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-add', {}, createTestApp());
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, createTestApp())
+      .toPromise();
+
+    expect(tree.files).toContain('/package.json');
+
+    const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
+    expect(Object.keys(packageJson.devDependencies)).toContain('@angular/cdk');
+  });
+
+  it('addBrowserIgnorePackageSetting works', async () => {
+    const runner = new SchematicTestRunner('schematics', collectionPath);
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, createTestApp())
+      .toPromise();
 
     expect(tree.files).toContain('/package.json');
 
@@ -63,9 +77,11 @@ describe('ngx-face-api-js-schematics', () => {
     expect(packageJson.browser.crypto).toBe(false);
   });
 
-  it('addCdkOverlayPrebuiltCssToAppStyles works', () => {
+  it('addCdkOverlayPrebuiltCssToAppStyles works', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-add', {}, createTestApp());
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, createTestApp())
+      .toPromise();
 
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
@@ -78,9 +94,11 @@ describe('ngx-face-api-js-schematics', () => {
     }
   });
 
-  it('addNgxFaceApiJsModule works', () => {
+  it('addNgxFaceApiJsModule works', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ng-add', {}, createTestApp());
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, createTestApp())
+      .toPromise();
 
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
