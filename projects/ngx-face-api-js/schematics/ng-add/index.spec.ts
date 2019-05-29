@@ -38,7 +38,7 @@ function createTestApp(appOptions: any = {}): UnitTestTree {
   );
 }
 
-describe('ngx-face-api-js-schematics', () => {
+describe('ngx-face-api-js-schematics ng-add', () => {
   it('addDependencies works face-api.js', async () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
     const tree = await runner

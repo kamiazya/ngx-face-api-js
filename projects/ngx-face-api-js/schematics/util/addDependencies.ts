@@ -16,10 +16,12 @@ export function addDependencies({
   packageName,
   version = 'latest',
   type = NodeDependencyType.Default,
+  overwrite = false,
 }: {
   packageName: string;
   version?: string;
   type?: NodeDependencyType;
+  overwrite?: boolean;
 }): Rule {
   return (host: Tree, context: SchematicContext): Observable<Tree> => {
     const buf = host.read('package.json');
@@ -36,9 +38,9 @@ export function addDependencies({
       map((npmRegistryPackage: NpmRegistryPackage) => {
         const nodeDependency: NodeDependency = {
           type,
+          overwrite,
           name: npmRegistryPackage.name,
           version: npmRegistryPackage.version,
-          overwrite: false,
         };
         addPackageJsonDependency(host, nodeDependency);
         context.logger.info(

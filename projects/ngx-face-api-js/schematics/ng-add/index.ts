@@ -1,7 +1,6 @@
 import { Rule, chain } from '@angular-devkit/schematics';
 import { Schema } from './Schema';
 import { NodeDependencyType } from '@schematics/angular/utility/dependencies';
-import { FACE_API_JS_VERSION } from '../util/package-setting';
 import { addDependencies } from '../util/addDependencies';
 import { installDependencies } from '../util/installDependencies';
 import { addBrowserIgnorePackageSetting } from './addBrowserIgnorePackageSetting';
@@ -14,7 +13,7 @@ export function ngAdd(options: Schema): Rule {
   return chain([
     addDependencies({
       packageName: 'face-api.js',
-      version: FACE_API_JS_VERSION,
+      version: '~0.20.0',
     }),
     addDependencies({
       packageName: '@angular/cdk',
