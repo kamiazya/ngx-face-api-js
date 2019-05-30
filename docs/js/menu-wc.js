@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/NgxFaceApiJsModule.html" data-type="entity-link">NgxFaceApiJsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' : 'data-target="#xs-components-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' }>
+                                            'data-target="#components-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' : 'data-target="#xs-components-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' :
-                                            'id="xs-components-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' :
+                                            'id="xs-components-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' }>
                                             <li class="link">
                                                 <a href="components/DetectionResultComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">DetectionResultComponent</a>
@@ -75,13 +75,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' : 'data-target="#xs-directives-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' }>
+                                        'data-target="#directives-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' : 'data-target="#xs-directives-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' :
-                                        'id="xs-directives-links-module-NgxFaceApiJsModule-4ac1d4a0ba2c3448f14d090e1d265e5a"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' :
+                                        'id="xs-directives-links-module-NgxFaceApiJsModule-bef871cb84617873beb6a8c1bc6f26da"' }>
                                         <li class="link">
                                             <a href="directives/DetectAllFacesImgDirective.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules">DetectAllFacesImgDirective</a>
@@ -171,6 +171,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse" ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/NgxFaceApiJsModuleOption.html" data-type="entity-link">NgxFaceApiJsModuleOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/NpmRegistryPackage.html" data-type="entity-link">NpmRegistryPackage</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/Schema.html" data-type="entity-link">Schema</a>
                             </li>

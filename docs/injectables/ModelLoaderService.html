@@ -134,7 +134,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -201,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:74</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -417,8 +417,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -489,8 +489,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -569,7 +569,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">projects/ngx-face-api-js/src/lib/services/model-loader.service.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -584,59 +584,89 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Inject } from &#x27;@angular/core&#x27;;
 // tslint:disable-next-line:max-line-length
-import { loadMtcnnModel, loadSsdMobilenetv1Model, loadFaceExpressionModel, loadFaceLandmarkModel, loadTinyFaceDetectorModel, loadFaceRecognitionModel } from &#x27;face-api.js&#x27;;
+import {
+  loadMtcnnModel,
+  loadSsdMobilenetv1Model,
+  loadFaceExpressionModel,
+  loadFaceLandmarkModel,
+  loadTinyFaceDetectorModel,
+  loadFaceRecognitionModel,
+  loadAgeGenderModel,
+} from &#x27;face-api.js&#x27;;
 // tslint:disable-next-line:max-line-length
-import { ModelToken, ModelsUrl, FeatureToken, SsdMobilenetv1Model, FaceExpressionModel, FaceLandmarkModel, FaceRecognitionModel, ExpressionsFeatureToken, LandmarksFeatureToken, DescriptorsFeatureToken } from &#x27;../tokens&#x27;;
-
+import {
+  ModelToken,
+  ModelsUrl,
+  FeatureToken,
+  SsdMobilenetv1Model,
+  FaceExpressionModel,
+  FaceLandmarkModel,
+  FaceRecognitionModel,
+  ExpressionsFeatureToken,
+  LandmarksFeatureToken,
+  DescriptorsFeatureToken,
+  AgeAndGenderToken,
+  AgeAndGenderModel,
+  MtcnnModel,
+  TinyFaceDetectorModel,
+} from &#x27;../tokens&#x27;;
 
 @Injectable()
 export class ModelLoaderService {
-
   private loadedModels: ModelToken[] &#x3D; [];
 
   constructor(
     @Inject(ModelsUrl)
     private modelUrl: string,
-  ) { }
+  ) {}
 
   private getReqiredModels(tokens: FeatureToken[]): ModelToken[] {
-    return [SsdMobilenetv1Model].concat(Object
-      .entries({
+    return [SsdMobilenetv1Model].concat(
+      Object.entries({
         [ExpressionsFeatureToken]: [FaceExpressionModel, SsdMobilenetv1Model],
         [LandmarksFeatureToken]: [FaceLandmarkModel, SsdMobilenetv1Model],
         [DescriptorsFeatureToken]: [FaceRecognitionModel],
+        [AgeAndGenderToken]: [AgeAndGenderModel],
       })
-      .map(([key, models]) &#x3D;&gt; tokens.includes(key as FeatureToken) ? models : [])
-      .reduce((a, b) &#x3D;&gt; a.concat(b))
-      .filter((v, i, arr) &#x3D;&gt; arr.indexOf(v) &#x3D;&#x3D;&#x3D; i))
-      ;
+        .map(([key, models]) &#x3D;&gt;
+          tokens.includes(key as FeatureToken) ? models : [],
+        )
+        .reduce((a, b) &#x3D;&gt; a.concat(b))
+        .filter((v, i, arr) &#x3D;&gt; arr.indexOf(v) &#x3D;&#x3D;&#x3D; i),
+    );
   }
 
   private mapLoadFunction(model: ModelToken) {
     switch (model) {
-      case &#x27;SsdMobilenetv1Model&#x27;:   return loadSsdMobilenetv1Model;
-      case &#x27;MtcnnModel&#x27;:            return loadMtcnnModel;
-      case &#x27;FaceExpressionModel&#x27;:   return loadFaceExpressionModel;
-      case &#x27;FaceLandmarkModel&#x27;:     return loadFaceLandmarkModel;
-      case &#x27;FaceRecognitionModel&#x27;:  return loadFaceRecognitionModel;
-      case &#x27;TinyFaceDetectorModel&#x27;: return loadTinyFaceDetectorModel;
+      case SsdMobilenetv1Model:
+        return loadSsdMobilenetv1Model;
+      case MtcnnModel:
+        return loadMtcnnModel;
+      case FaceExpressionModel:
+        return loadFaceExpressionModel;
+      case FaceLandmarkModel:
+        return loadFaceLandmarkModel;
+      case FaceRecognitionModel:
+        return loadFaceRecognitionModel;
+      case TinyFaceDetectorModel:
+        return loadTinyFaceDetectorModel;
+      case AgeAndGenderModel:
+        return loadAgeGenderModel;
     }
   }
-
 
   public isLoaded(model: ModelToken): boolean {
     return this.loadedModels.includes(model);
   }
 
   async load(...models: ModelToken[]): Promise&lt;void&gt; {
-    const loadTargetModels &#x3D; models
-      .filter(m &#x3D;&gt; this.isLoaded(m) &#x3D;&#x3D;&#x3D; false);
+    const loadTargetModels &#x3D; models.filter(m &#x3D;&gt; this.isLoaded(m) &#x3D;&#x3D;&#x3D; false);
 
-    await Promise
-      .all(
-        loadTargetModels
-          .map(m &#x3D;&gt; this.mapLoadFunction(m))
-          .map(load &#x3D;&gt; load(this.modelUrl)));
+    await Promise.all(
+      loadTargetModels
+        .map(m &#x3D;&gt; this.mapLoadFunction(m))
+        .map(load &#x3D;&gt; load(this.modelUrl)),
+    );
 
     if (loadTargetModels.length &gt;&#x3D; 0) {
       this.loadedModels &#x3D; loadTargetModels.concat(this.loadedModels);
