@@ -12,10 +12,10 @@ It is a wrapper for [face-api.js](https://github.com/justadudewhohacks/face-api.
 
 Make face and emotion recognition features easy to use in Angular projects by using [face-api.js](https://github.com/justadudewhohacks/face-api.js).
 
-- **Recognize faces / emotions** in Angular project.
+- **Recognize faces, emotions** and so on in Angular project.
 - **Works in a Mobile**.
 - **No Script/Styles reqired**, you only embed attribute to img/video tag.
-- **Schematics Support**, you can quickly set up a project using the `ng add` command.
+- **Schematics Support**, you can quickly set up a project using the `ng add` and `ng update` command.
 
 ### How it works?
 
@@ -67,6 +67,13 @@ $ ng add ngx-face-api-js
 UPDATE package.json (1457 bytes)
 UPDATE src/styles.css (126 bytes)
 UPDATE src/app/app.module.ts (497 bytes)
+```
+
+## Update
+
+```bash
+$ ng update ngx-face-api-js
+...
 ```
 
 ### By Manual
