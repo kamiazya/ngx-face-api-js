@@ -69,16 +69,20 @@ UPDATE src/styles.css (126 bytes)
 UPDATE src/app/app.module.ts (497 bytes)
 ```
 
-## Update
-
-```bash
-$ ng update ngx-face-api-js
-...
-```
-
 ### By Manual
 
 See [Wiki](https://github.com/kamiazya/ngx-face-api-js/wiki/Manual-Installation).
+
+## Update
+
+### By `ng-update` Schematics
+
+```bash
+$ ng update ngx-face-api-js
+✅️ Added dependency: face-api.js@~0.20.0
+✅️ Dependencies installed
+UPDATE package.json (1440 bytes)
+```
 
 ## Documantation
 
