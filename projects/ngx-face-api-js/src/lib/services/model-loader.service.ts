@@ -7,6 +7,7 @@ import {
   loadFaceLandmarkModel,
   loadTinyFaceDetectorModel,
   loadFaceRecognitionModel,
+  loadAgeGenderModel,
 } from 'face-api.js';
 // tslint:disable-next-line:max-line-length
 import {
@@ -20,6 +21,10 @@ import {
   ExpressionsFeatureToken,
   LandmarksFeatureToken,
   DescriptorsFeatureToken,
+  AgeAndGenderToken,
+  AgeAndGenderModel,
+  MtcnnModel,
+  TinyFaceDetectorModel,
 } from '../tokens';
 
 @Injectable()
@@ -37,6 +42,7 @@ export class ModelLoaderService {
         [ExpressionsFeatureToken]: [FaceExpressionModel, SsdMobilenetv1Model],
         [LandmarksFeatureToken]: [FaceLandmarkModel, SsdMobilenetv1Model],
         [DescriptorsFeatureToken]: [FaceRecognitionModel],
+        [AgeAndGenderToken]: [AgeAndGenderModel],
       })
         .map(([key, models]) =>
           tokens.includes(key as FeatureToken) ? models : [],
@@ -48,18 +54,20 @@ export class ModelLoaderService {
 
   private mapLoadFunction(model: ModelToken) {
     switch (model) {
-      case 'SsdMobilenetv1Model':
+      case SsdMobilenetv1Model:
         return loadSsdMobilenetv1Model;
-      case 'MtcnnModel':
+      case MtcnnModel:
         return loadMtcnnModel;
-      case 'FaceExpressionModel':
+      case FaceExpressionModel:
         return loadFaceExpressionModel;
-      case 'FaceLandmarkModel':
+      case FaceLandmarkModel:
         return loadFaceLandmarkModel;
-      case 'FaceRecognitionModel':
+      case FaceRecognitionModel:
         return loadFaceRecognitionModel;
-      case 'TinyFaceDetectorModel':
+      case TinyFaceDetectorModel:
         return loadTinyFaceDetectorModel;
+      case AgeAndGenderModel:
+        return loadAgeGenderModel;
     }
   }
 

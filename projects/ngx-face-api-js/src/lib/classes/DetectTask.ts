@@ -48,30 +48,76 @@ export class DetectTask {
 
     if (
       this.isMatchPattern(
+        ['expressions', 'landmarks', 'ageAndGender', 'descriptors'],
+        this.tokens,
+      )
+    ) {
+      if (t instanceof faceapi.DetectSingleFaceTask) {
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender()
+          .withFaceDescriptor()
+          .run();
+      } else if (t instanceof faceapi.DetectAllFacesTask) {
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender()
+          .withFaceDescriptors()
+          .run();
+      }
+    } else if (
+      this.isMatchPattern(
         ['expressions', 'landmarks', 'descriptors'],
         this.tokens,
       )
     ) {
       if (t instanceof faceapi.DetectSingleFaceTask) {
         return t
-          .withFaceExpressions()
           .withFaceLandmarks()
+          .withFaceExpressions()
           .withFaceDescriptor()
           .run();
       } else if (t instanceof faceapi.DetectAllFacesTask) {
         return t
-          .withFaceExpressions()
           .withFaceLandmarks()
+          .withFaceExpressions()
           .withFaceDescriptors()
           .run();
       }
+    } else if (
+      this.isMatchPattern(
+        ['expressions', 'landmarks', 'ageAndGender'],
+        this.tokens,
+      )
+    ) {
+      return t
+        .withFaceLandmarks()
+        .withFaceExpressions()
+        .withAgeAndGender()
+        .run();
     } else if (this.isMatchPattern(['expressions', 'landmarks'], this.tokens)) {
       return t
-        .withFaceExpressions()
         .withFaceLandmarks()
+        .withFaceExpressions()
+        .run();
+    } else if (
+      this.isMatchPattern(['expressions', 'ageAndGender'], this.tokens)
+    ) {
+      return t
+        .withFaceExpressions()
+        .withAgeAndGender()
         .run();
     } else if (this.isMatchPattern(['expressions'], this.tokens)) {
       return t.withFaceExpressions().run();
+    } else if (
+      this.isMatchPattern(['landmarks', 'ageAndGender'], this.tokens)
+    ) {
+      return t
+        .withFaceLandmarks()
+        .withAgeAndGender()
+        .run();
     } else if (this.isMatchPattern(['landmarks'], this.tokens)) {
       return t.withFaceLandmarks().run();
     }

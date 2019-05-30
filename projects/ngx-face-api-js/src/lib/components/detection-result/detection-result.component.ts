@@ -83,13 +83,11 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
     this.renderer.setStyle(this.canvas, 'width', `${width}px`);
     this.renderer.setStyle(this.canvas, 'height', `${height}px`);
     if (this.task.tokens.length >= 1) {
-      faceapi.drawDetection(this.canvas, detectionsForSize, {
-        withScore: false,
-      });
+      faceapi.draw.drawDetections(this.canvas, detectionsForSize);
 
       const resizeResults = faceapi.resizeResults(results, { width, height });
       if (this.task.tokens.includes('expressions')) {
-        faceapi.drawFaceExpressions(
+        faceapi.draw.drawFaceExpressions(
           this.canvas,
           resizeResults.map(({ detection, expressions }) => ({
             position: detection.box,
@@ -99,18 +97,27 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
       }
 
       if (this.task.tokens.includes('landmarks')) {
-        faceapi.drawLandmarks(
+        faceapi.draw.drawFaceLandmarks(
           this.canvas,
           resizeResults.map(({ landmarks }) => landmarks),
-          {
-            lineWidth: 2,
-            drawLines: true,
-            color: 'green',
-          },
         );
       }
+
+      if (this.task.tokens.includes('ageAndGender')) {
+        resizeResults.forEach(result => {
+          const { age, gender, genderProbability } = result;
+          const text = new faceapi.draw.DrawTextField(
+            [
+              `${faceapi.round(age, 0)} years`,
+              `${gender} (${faceapi.round(genderProbability)})`,
+            ],
+            result.detection.box.bottomLeft,
+          );
+          text.draw(this.canvas);
+        });
+      }
     } else {
-      faceapi.drawDetection(this.canvas, detectionsForSize);
+      faceapi.draw.drawDetections(this.canvas, detectionsForSize);
     }
   }
 }
