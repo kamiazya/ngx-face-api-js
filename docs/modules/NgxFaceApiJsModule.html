@@ -256,28 +256,28 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="forRoot"></a>
+                    <a name="createProvidersFromOptions"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Static</span>
-                            forRoot
+                            createProvidersFromOptions
                         </b>
-                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
+                        <a href="#createProvidersFromOptions"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>forRoot(options: literal type)</code>
+                    <code>createProvidersFromOptions(options: <a href="../interfaces/NgxFaceApiJsModuleOption.html">NgxFaceApiJsModuleOption</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/ngx-face-api-js.module.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/ngx-face-api-js.module.ts:38</a></div>
                 </td>
             </tr>
 
@@ -299,7 +299,79 @@
                                 <tr>
                                     <td>options</td>
                                     <td>
-                                            <code>literal type</code>
+                                                <code><a href="../interfaces/NgxFaceApiJsModuleOption.html" target="_self" >NgxFaceApiJsModuleOption</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Provider[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forRoot"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Static</span>
+                            forRoot
+                        </b>
+                        <a href="#forRoot"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>forRoot(options: <a href="../interfaces/NgxFaceApiJsModuleOption.html">NgxFaceApiJsModuleOption</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/ngx-face-api-js.module.ts:58</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../interfaces/NgxFaceApiJsModuleOption.html" target="_self" >NgxFaceApiJsModuleOption</a></code>
                                     </td>
 
                                     <td>
@@ -339,7 +411,16 @@ import { ModelsUrl, FaceDetectionOptions } from &#x27;./tokens&#x27;;
 import { ModelLoaderService, FaceDetectorService } from &#x27;./services&#x27;;
 import { DetectionResultComponent } from &#x27;./components&#x27;;
 // tslint:disable-next-line:max-line-length
-import { DetectAllFacesImgDirective, DetectSingleFaceImgDirective, DetectAllFacesVideoDirective } from &#x27;./directives&#x27;;
+import {
+  DetectAllFacesImgDirective,
+  DetectSingleFaceImgDirective,
+  DetectAllFacesVideoDirective,
+} from &#x27;./directives&#x27;;
+
+export interface NgxFaceApiJsModuleOption {
+  modelsUrl: string;
+  faceDetectionOptions?: faceapi.FaceDetectionOptions;
+}
 
 @NgModule({
   declarations: [
@@ -348,31 +429,25 @@ import { DetectAllFacesImgDirective, DetectSingleFaceImgDirective, DetectAllFace
     DetectSingleFaceImgDirective,
     DetectAllFacesVideoDirective,
   ],
-  imports: [
-    BrowserModule,
-    OverlayModule,
-    PortalModule,
-  ],
+  imports: [BrowserModule, OverlayModule, PortalModule],
   exports: [
     DetectAllFacesImgDirective,
     DetectSingleFaceImgDirective,
     DetectAllFacesVideoDirective,
   ],
-  entryComponents: [
-    DetectionResultComponent,
-  ],
+  entryComponents: [DetectionResultComponent],
 })
 export class NgxFaceApiJsModule {
-
-  static forRoot(options: {
-    modelsUrl: string,
-    faceDetectionOptions?: faceapi.FaceDetectionOptions,
-  }): ModuleWithProviders {
+  static createProvidersFromOptions(
+    options: NgxFaceApiJsModuleOption,
+  ): Provider[] {
     const providers: Provider[] &#x3D; [
       {
         provide: ModelsUrl,
         useValue: options.modelsUrl,
       },
+      ModelLoaderService,
+      FaceDetectorService,
     ];
     if (options.faceDetectionOptions) {
       providers.push({
@@ -380,16 +455,11 @@ export class NgxFaceApiJsModule {
         useValue: options.faceDetectionOptions,
       });
     }
-    providers.push(
-      {
-        provide: ModelLoaderService,
-        useClass: ModelLoaderService,
-      },
-      {
-        provide: FaceDetectorService,
-        useClass: FaceDetectorService,
-      }
-    );
+    return providers;
+  }
+
+  static forRoot(options: NgxFaceApiJsModuleOption): ModuleWithProviders {
+    const providers &#x3D; this.createProvidersFromOptions(options);
     return { ngModule: NgxFaceApiJsModule, providers };
   }
 }

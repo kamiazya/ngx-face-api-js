@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/ngx-face-api-js/src/lib/directives/detect-all-faces.directive.ts</code>
+            <code>projects/ngx-face-api-js/src/lib/directives/detect-all-faces-img.directive.ts</code>
         </p>
 
 
@@ -134,7 +134,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces.directive.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces-img.directive.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -219,7 +219,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces.directive.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces-img.directive.ts:11</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -254,7 +254,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces.directive.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces-img.directive.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -287,7 +287,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces.directive.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/ngx-face-api-js/src/lib/directives/detect-all-faces-img.directive.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -301,79 +301,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Input, ElementRef, Injector, OnInit, AfterViewInit } from &#x27;@angular/core&#x27;;
-import { Overlay, OverlayConfig } from &#x27;@angular/cdk/overlay&#x27;;
-import { ComponentPortal } from &#x27;@angular/cdk/portal&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Input, ElementRef, Injector } from &#x27;@angular/core&#x27;;
+import { Overlay } from &#x27;@angular/cdk/overlay&#x27;;
 import { FeatureToken, TaskTypeToken } from &#x27;../tokens&#x27;;
-import { DetectTask } from &#x27;../classes&#x27;;
-import { DetectionResultComponent } from &#x27;../components/detection-result/detection-result.component&#x27;;
-
-abstract class AbstractDetectDirective implements OnInit, AfterViewInit {
-
-  protected abstract with: FeatureToken[] &#x3D; [];
-  protected abstract type: TaskTypeToken;
-  protected abstract stream: boolean;
-
-  constructor(
-    protected el: ElementRef&lt;HTMLImageElement&gt;,
-    protected overlay: Overlay,
-    protected injector: Injector,
-  ) { }
-  public task: DetectTask;
-
-  ngOnInit() {
-    this.task &#x3D; new DetectTask({
-      type: this.type,
-      tokens: this.with,
-      realtime: this.stream,
-    });
-  }
-  ngAfterViewInit() {
-    this.task.resolveTarget(this.el.nativeElement);
-
-    const positionStrategy &#x3D; this.overlay
-      .position()
-      .flexibleConnectedTo(this.el)
-      .withPositions([
-        {
-          overlayX: &#x27;start&#x27;, overlayY: &#x27;top&#x27;,
-          originX: &#x27;start&#x27;,  originY: &#x27;top&#x27;
-        },
-      ])
-      .withFlexibleDimensions(false)
-      .withLockedPosition(true)
-      ;
-
-    const scrollStrategy &#x3D; this.overlay.scrollStrategies.reposition();
-    const config &#x3D; new OverlayConfig({
-      positionStrategy,
-      scrollStrategy,
-      hasBackdrop: false,
-    });
-    const overlayRef &#x3D; this.overlay.create(config);
-    const injector &#x3D; Injector.create({
-      parent: this.injector,
-      providers: [
-        {
-          provide: DetectTask,
-          useValue: this.task,
-        }
-      ],
-    });
-
-    const portal &#x3D; new ComponentPortal(DetectionResultComponent, undefined, injector);
-    overlayRef.attach(portal);
-  }
-}
-
+import { AbstractDetectDirective } from &#x27;./abbstract-detect.directive&#x27;;
 @Directive({
   selector: &#x27;img[allFaces]&#x27;,
   exportAs: &#x27;faces&#x27;,
 })
 export class DetectAllFacesImgDirective extends AbstractDetectDirective {
-
-  @Input() public with: FeatureToken[] &#x3D; [];
-
+  @Input()
+  public with: FeatureToken[] &#x3D; [];
   constructor(
     el: ElementRef&lt;HTMLImageElement&gt;,
     overlay: Overlay,
@@ -381,62 +319,8 @@ export class DetectAllFacesImgDirective extends AbstractDetectDirective {
   ) {
     super(el, overlay, injector);
   }
-
   protected type: TaskTypeToken &#x3D; &#x27;all&#x27;;
   protected stream &#x3D; false;
-
-}
-
-@Directive({
-  selector: &#x27;img[singleFace]&#x27;,
-  exportAs: &#x27;face&#x27;,
-})
-export class DetectSingleFaceImgDirective
-  extends AbstractDetectDirective
-  implements OnInit {
-
-  @Input() public with: FeatureToken[] &#x3D; [];
-
-  constructor(
-    el: ElementRef&lt;HTMLImageElement&gt;,
-    overlay: Overlay,
-    injector: Injector,
-  ) {
-    super(el, overlay, injector);
-  }
-
-  protected type: TaskTypeToken &#x3D; &#x27;single&#x27;;
-  protected stream &#x3D; false;
-
-  ngOnInit() {
-    this.task &#x3D; new DetectTask({
-      type: this.type,
-      tokens: this.with,
-      realtime: this.stream,
-    });
-  }
-
-}
-
-
-@Directive({
-  selector: &#x27;video[allFaces]&#x27;,
-  exportAs: &#x27;faces&#x27;,
-})
-export class DetectAllFacesVideoDirective extends AbstractDetectDirective {
-  @Input() public with: FeatureToken[] &#x3D; [];
-
-  constructor(
-    el: ElementRef&lt;HTMLImageElement&gt;,
-    overlay: Overlay,
-    injector: Injector,
-  ) {
-    super(el, overlay, injector);
-  }
-
-  protected type: TaskTypeToken &#x3D; &#x27;all&#x27;;
-  protected stream &#x3D; true;
-
 }
 </code></pre>
     </div>

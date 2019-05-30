@@ -165,7 +165,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -230,7 +230,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -258,7 +258,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -286,7 +286,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -315,7 +315,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -344,7 +344,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -383,8 +383,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:41</a></div>
                 </td>
             </tr>
 
@@ -455,8 +455,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:32</a></div>
                 </td>
             </tr>
 
@@ -539,8 +539,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:36</a></div>
                 </td>
             </tr>
 
@@ -606,7 +606,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:6</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">projects/ngx-face-api-js/src/lib/classes/DetectTask.ts:5</a></div>
                                 </td>
                             </tr>
 
@@ -621,8 +621,9 @@
 import { TaskTypeToken, FeatureToken } from &#x27;../tokens&#x27;;
 
 export class DetectTask {
-
-  public get resolveTarget(): (el: HTMLImageElement | HTMLVideoElement) &#x3D;&gt; void {
+  public get resolveTarget(): (
+    el: HTMLImageElement | HTMLVideoElement,
+  ) &#x3D;&gt; void {
     return this.targetResolver;
   }
 
@@ -631,15 +632,16 @@ export class DetectTask {
   public readonly realtime: boolean;
 
   constructor(option: {
-    type: TaskTypeToken,
-    tokens: FeatureToken[],
-    realtime?: boolean,
-
+    type: TaskTypeToken;
+    tokens: FeatureToken[];
+    realtime?: boolean;
   }) {
     this.type &#x3D; option.type;
     this.tokens &#x3D; option.tokens;
     this.realtime &#x3D; option.realtime || false;
-    this.target &#x3D; new Promise&lt;HTMLImageElement | HTMLVideoElement&gt;(resolver &#x3D;&gt; this.targetResolver &#x3D; resolver);
+    this.target &#x3D; new Promise&lt;HTMLImageElement | HTMLVideoElement&gt;(
+      resolver &#x3D;&gt; (this.targetResolver &#x3D; resolver),
+    );
   }
 
   public target: Promise&lt;HTMLImageElement | HTMLVideoElement&gt;;
@@ -663,22 +665,83 @@ export class DetectTask {
       t &#x3D; faceapi.detectSingleFace(await this.target, option || undefined);
     }
 
-    if (this.isMatchPattern([&#x27;expressions&#x27;, &#x27;landmarks&#x27;, &#x27;descriptors&#x27;], this.tokens)) {
+    if (
+      this.isMatchPattern(
+        [&#x27;expressions&#x27;, &#x27;landmarks&#x27;, &#x27;ageAndGender&#x27;, &#x27;descriptors&#x27;],
+        this.tokens,
+      )
+    ) {
       if (t instanceof faceapi.DetectSingleFaceTask) {
-        return t.withFaceExpressions().withFaceLandmarks().withFaceDescriptor().run();
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender()
+          .withFaceDescriptor()
+          .run();
       } else if (t instanceof faceapi.DetectAllFacesTask) {
-        return t.withFaceExpressions().withFaceLandmarks().withFaceDescriptors().run();
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withAgeAndGender()
+          .withFaceDescriptors()
+          .run();
       }
+    } else if (
+      this.isMatchPattern(
+        [&#x27;expressions&#x27;, &#x27;landmarks&#x27;, &#x27;descriptors&#x27;],
+        this.tokens,
+      )
+    ) {
+      if (t instanceof faceapi.DetectSingleFaceTask) {
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withFaceDescriptor()
+          .run();
+      } else if (t instanceof faceapi.DetectAllFacesTask) {
+        return t
+          .withFaceLandmarks()
+          .withFaceExpressions()
+          .withFaceDescriptors()
+          .run();
+      }
+    } else if (
+      this.isMatchPattern(
+        [&#x27;expressions&#x27;, &#x27;landmarks&#x27;, &#x27;ageAndGender&#x27;],
+        this.tokens,
+      )
+    ) {
+      return t
+        .withFaceLandmarks()
+        .withFaceExpressions()
+        .withAgeAndGender()
+        .run();
     } else if (this.isMatchPattern([&#x27;expressions&#x27;, &#x27;landmarks&#x27;], this.tokens)) {
-      return t.withFaceExpressions().withFaceLandmarks().run();
+      return t
+        .withFaceLandmarks()
+        .withFaceExpressions()
+        .run();
+    } else if (
+      this.isMatchPattern([&#x27;expressions&#x27;, &#x27;ageAndGender&#x27;], this.tokens)
+    ) {
+      return t
+        .withFaceExpressions()
+        .withAgeAndGender()
+        .run();
     } else if (this.isMatchPattern([&#x27;expressions&#x27;], this.tokens)) {
       return t.withFaceExpressions().run();
+    } else if (
+      this.isMatchPattern([&#x27;landmarks&#x27;, &#x27;ageAndGender&#x27;], this.tokens)
+    ) {
+      return t
+        .withFaceLandmarks()
+        .withAgeAndGender()
+        .run();
     } else if (this.isMatchPattern([&#x27;landmarks&#x27;], this.tokens)) {
       return t.withFaceLandmarks().run();
     }
     return t.run();
   }
-
 }
 </code></pre>
     </div>

@@ -182,8 +182,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/face-detector.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">projects/ngx-face-api-js/src/lib/services/face-detector.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -247,36 +247,32 @@ import { FaceDetectionOptions } from &#x27;../tokens&#x27;;
 
 @Injectable()
 export class FaceDetectorService {
-
   constructor(
     private modelLoader: ModelLoaderService,
     @Optional()
     @Inject(FaceDetectionOptions)
     private option?: faceapi.FaceDetectionOptions,
-  ) { }
+  ) {}
 
   public detect(task: DetectTask): Observable&lt;any&gt; {
     if (task.realtime &#x3D;&#x3D;&#x3D; true) {
-      return of(task)
-        .pipe(
-          switchMap(async (t) &#x3D;&gt; (await t.target)),
-          switchMap((video) &#x3D;&gt; fromEvent(video, &#x27;loadeddata&#x27;)),
-          switchMap(() &#x3D;&gt; this.modelLoader.loadForFeature(task.tokens)),
-          switchMap(() &#x3D;&gt; interval(300)),
-          switchMap(() &#x3D;&gt; task.detect(this.option)),
-          shareReplay(1),
-        );
-    }
-    return of(task)
-      .pipe(
-        switchMap(async (t) &#x3D;&gt; (await t.target)),
-        switchMap((image) &#x3D;&gt; fromEvent(image, &#x27;load&#x27;)),
-        switchMap(async () &#x3D;&gt; await this.modelLoader.loadForFeature(task.tokens)),
+      return of(task).pipe(
+        switchMap(async t &#x3D;&gt; await t.target),
+        switchMap(video &#x3D;&gt; fromEvent(video, &#x27;loadeddata&#x27;)),
+        switchMap(() &#x3D;&gt; this.modelLoader.loadForFeature(task.tokens)),
+        switchMap(() &#x3D;&gt; interval(300)),
         switchMap(() &#x3D;&gt; task.detect(this.option)),
         shareReplay(1),
       );
+    }
+    return of(task).pipe(
+      switchMap(async t &#x3D;&gt; await t.target),
+      switchMap(image &#x3D;&gt; fromEvent(image, &#x27;load&#x27;)),
+      switchMap(async () &#x3D;&gt; await this.modelLoader.loadForFeature(task.tokens)),
+      switchMap(() &#x3D;&gt; task.detect(this.option)),
+      shareReplay(1),
+    );
   }
-
 }
 </code></pre>
     </div>
