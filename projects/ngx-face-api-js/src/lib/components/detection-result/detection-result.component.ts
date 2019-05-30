@@ -102,6 +102,20 @@ export class DetectionResultComponent implements OnInit, OnDestroy {
           resizeResults.map(({ landmarks }) => landmarks),
         );
       }
+
+      if (this.task.tokens.includes('ageAndGender')) {
+        resizeResults.forEach(result => {
+          const { age, gender, genderProbability } = result;
+          const text = new faceapi.draw.DrawTextField(
+            [
+              `${faceapi.round(age, 0)} years`,
+              `${gender} (${faceapi.round(genderProbability)})`,
+            ],
+            result.detection.box.bottomLeft,
+          );
+          text.draw(this.canvas);
+        });
+      }
     } else {
       faceapi.draw.drawDetections(this.canvas, detectionsForSize);
     }
