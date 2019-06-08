@@ -1,8 +1,9 @@
 import { ElementRef, Injector, OnInit, AfterViewInit } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { FeatureToken, TaskTypeToken } from '../tokens';
-import { DetectTask } from '../classes';
+import { TaskTypeToken } from '../tokens/TaskTypeToken';
+import { FeatureToken } from '../tokens/FeatureToken';
+import { DetectTask } from '../classes/DetectTask';
 import { DetectionResultComponent } from '../components/detection-result/detection-result.component';
 
 export abstract class AbstractDetectDirective implements OnInit, AfterViewInit {

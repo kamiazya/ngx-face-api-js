@@ -1,18 +1,17 @@
-import { NgModule, Provider } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import * as faceapi from 'face-api.js';
-import { ModelsUrl, FaceDetectionOptions } from './tokens';
-import { ModelLoaderService, FaceDetectorService } from './services';
-import { DetectionResultComponent } from './components';
-// tslint:disable-next-line:max-line-length
-import {
-  DetectAllFacesImgDirective,
-  DetectSingleFaceImgDirective,
-  DetectAllFacesVideoDirective,
-} from './directives';
+import { ModelsUrl } from './tokens/ModelsUrl';
+import { FaceDetectionOptions } from './tokens/FaceDetectionOptions';
+import { FaceDetectorService } from './services/face-detector.service';
+import { ModelLoaderService } from './services/model-loader.service';
+import { DetectionResultComponent } from './components/detection-result/detection-result.component';
+import { DetectAllFacesImgDirective } from './directives/detect-all-faces-img.directive';
+import { DetectSingleFaceImgDirective } from './directives/detect-dingle-face-img.directive';
+import { DetectAllFacesVideoDirective } from './directives/detect-all-faces-video.directive';
 
 export interface NgxFaceApiJsModuleOption {
   modelsUrl: string;
@@ -35,28 +34,25 @@ export interface NgxFaceApiJsModuleOption {
   entryComponents: [DetectionResultComponent],
 })
 export class NgxFaceApiJsModule {
-  static createProvidersFromOptions(
-    options: NgxFaceApiJsModuleOption,
-  ): Provider[] {
-    const providers: Provider[] = [
-      {
-        provide: ModelsUrl,
-        useValue: options.modelsUrl,
-      },
-      ModelLoaderService,
-      FaceDetectorService,
-    ];
-    if (options.faceDetectionOptions) {
-      providers.push({
-        provide: FaceDetectionOptions,
-        useValue: options.faceDetectionOptions,
-      });
-    }
-    return providers;
-  }
-
   static forRoot(options: NgxFaceApiJsModuleOption): ModuleWithProviders {
-    const providers = this.createProvidersFromOptions(options);
-    return { ngModule: NgxFaceApiJsModule, providers };
+    return {
+      ngModule: NgxFaceApiJsModule,
+      providers: [
+        {
+          provide: ModelsUrl,
+          useValue: options.modelsUrl,
+        },
+        ModelLoaderService,
+        FaceDetectorService,
+        ...[
+          options.faceDetectionOptions
+            ? {
+                provide: FaceDetectionOptions,
+                useValue: options.faceDetectionOptions,
+              }
+            : [],
+        ],
+      ],
+    };
   }
 }

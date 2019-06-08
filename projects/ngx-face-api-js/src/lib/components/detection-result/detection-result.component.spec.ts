@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetectionResultComponent } from './detection-result.component';
-import { FaceDetectorService, ModelLoaderService } from '../../services';
-import { DetectTask } from '../../classes';
-import { ModelsUrl } from '../../tokens';
+import { FaceDetectorService } from '../../services/face-detector.service';
+import { ModelLoaderService } from '../../services/model-loader.service';
+import { DetectTask } from '../../classes/DetectTask';
+import { ModelsUrl } from '../../tokens/ModelsUrl';
 
 describe('DetectionResultComponent', () => {
   let component: DetectionResultComponent;

@@ -10,22 +10,24 @@ import {
   loadAgeGenderModel,
 } from 'face-api.js';
 // tslint:disable-next-line:max-line-length
+import { ModelsUrl } from '../tokens/ModelsUrl';
 import {
-  ModelToken,
-  ModelsUrl,
   FeatureToken,
-  SsdMobilenetv1Model,
-  FaceExpressionModel,
-  FaceLandmarkModel,
-  FaceRecognitionModel,
   ExpressionsFeatureToken,
   LandmarksFeatureToken,
   DescriptorsFeatureToken,
   AgeAndGenderToken,
+} from '../tokens/FeatureToken';
+import {
+  ModelToken,
+  SsdMobilenetv1Model,
+  FaceExpressionModel,
+  FaceLandmarkModel,
+  FaceRecognitionModel,
   AgeAndGenderModel,
   MtcnnModel,
   TinyFaceDetectorModel,
-} from '../tokens';
+} from '../tokens/ModelToken';
 
 @Injectable()
 export class ModelLoaderService {

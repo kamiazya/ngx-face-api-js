@@ -1,6 +1,7 @@
 import { Directive, Input, ElementRef, Injector } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
-import { FeatureToken, TaskTypeToken } from '../tokens';
+import { TaskTypeToken } from '../tokens/TaskTypeToken';
+import { FeatureToken } from '../tokens/FeatureToken';
 import { AbstractDetectDirective } from './abbstract-detect.directive';
 @Directive({
   selector: 'img[allFaces]',

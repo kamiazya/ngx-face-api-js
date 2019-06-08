@@ -1,5 +1,6 @@
 import * as faceapi from 'face-api.js';
-import { TaskTypeToken, FeatureToken } from '../tokens';
+import { TaskTypeToken } from '../tokens/TaskTypeToken';
+import { FeatureToken } from '../tokens/FeatureToken';
 
 export class DetectTask {
   public get resolveTarget(): (

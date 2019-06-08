@@ -1,7 +1,8 @@
 import { Directive, Input, ElementRef, Injector, OnInit } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
-import { FeatureToken, TaskTypeToken } from '../tokens';
-import { DetectTask } from '../classes';
+import { TaskTypeToken } from '../tokens/TaskTypeToken';
+import { FeatureToken } from '../tokens/FeatureToken';
+import { DetectTask } from '../classes/DetectTask';
 import { AbstractDetectDirective } from './abbstract-detect.directive';
 @Directive({
   selector: 'img[singleFace]',

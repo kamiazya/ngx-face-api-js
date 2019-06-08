@@ -11,7 +11,7 @@ import { Subscription, Subject, combineLatest } from 'rxjs';
 
 import * as faceapi from 'face-api.js';
 import { map, startWith } from 'rxjs/operators';
-import { DetectTask } from '../../classes';
+import { DetectTask } from '../../classes/DetectTask';
 import { FaceDetectorService } from '../../services/face-detector.service';
 
 @Component({

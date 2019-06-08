@@ -4,8 +4,8 @@ import { Observable, of, fromEvent, interval } from 'rxjs';
 import { switchMap, shareReplay } from 'rxjs/operators';
 
 import { ModelLoaderService } from './model-loader.service';
-import { DetectTask } from '../classes';
-import { FaceDetectionOptions } from '../tokens';
+import { DetectTask } from '../classes/DetectTask';
+import { FaceDetectionOptions } from '../tokens/FaceDetectionOptions';
 
 @Injectable()
 export class FaceDetectorService {
