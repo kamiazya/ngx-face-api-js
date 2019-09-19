@@ -21,7 +21,7 @@ import { FaceDetectorService } from '../../services/face-detector.service';
 export class DetectionResultComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
-  @ViewChild('canvas')
+  @ViewChild('canvas', { static: true })
   private canvasEl: ElementRef<HTMLCanvasElement>;
 
   private get canvas(): HTMLCanvasElement {
