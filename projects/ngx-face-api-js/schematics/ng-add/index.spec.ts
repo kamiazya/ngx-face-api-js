@@ -11,7 +11,6 @@ import {
   getProjectMainFile,
 } from '@angular/cdk/schematics';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { take } from 'rxjs/operators';
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
@@ -24,7 +23,6 @@ async function createTestApp(appOptions: any = {}): Promise<UnitTestTree> {
       version: '7.1.2',
       newProjectRoot: 'projects',
     })
-    .pipe(take(1))
     .toPromise();
 
   return baseRunner
@@ -37,7 +35,6 @@ async function createTestApp(appOptions: any = {}): Promise<UnitTestTree> {
       },
       workspaceTree,
     )
-    .pipe(take(1))
     .toPromise();
 }
 
