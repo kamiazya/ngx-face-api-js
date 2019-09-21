@@ -8,7 +8,6 @@ import {
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
 import { getFileContent } from '@schematics/angular/utility/test';
-import { take } from 'rxjs/operators';
 
 const migrationPath = path.join(__dirname, '../migration.json');
 
@@ -21,7 +20,6 @@ async function createTestApp(appOptions: any = {}): Promise<UnitTestTree> {
       version: '7.1.2',
       newProjectRoot: 'projects',
     })
-    .pipe(take(1))
     .toPromise();
   addPackageJsonDependency(workspaceTree, {
     name: 'face-api.js',
@@ -39,7 +37,6 @@ async function createTestApp(appOptions: any = {}): Promise<UnitTestTree> {
       },
       workspaceTree,
     )
-    .pipe(take(1))
     .toPromise();
 }
 
