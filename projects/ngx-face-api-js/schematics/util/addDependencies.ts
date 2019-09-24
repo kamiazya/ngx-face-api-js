@@ -23,10 +23,7 @@ export function addDependencies({
   type?: NodeDependencyType;
   overwrite?: boolean;
 }): Rule {
-  return (
-    host: Tree,
-    context: SchematicContext,
-  ): Tree | Observable<Tree> | Rule | Promise<void> | Promise<Rule> | void => {
+  return (host: Tree, context: SchematicContext) => {
     const buf = host.read('package.json');
     if (!buf) {
       throw new SchematicsException('cannot find package.json');
