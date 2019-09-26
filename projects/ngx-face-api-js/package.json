@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@angular/cdk": "^7.3.7",
-    "face-api.js": "~0.20.0"
+    "face-api.js": "~0.21.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "^7.3.8",
