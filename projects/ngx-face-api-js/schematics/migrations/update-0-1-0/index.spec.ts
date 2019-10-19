@@ -11,40 +11,40 @@ import { getFileContent } from '@schematics/angular/utility/test';
 
 const migrationPath = path.join(__dirname, '../migration.json');
 
-function createTestApp(appOptions: any = {}): UnitTestTree {
+async function createTestApp(appOptions: any = {}): Promise<UnitTestTree> {
   const baseRunner = new SchematicTestRunner('schematics', migrationPath);
 
-  const workspaceTree = baseRunner.runExternalSchematic(
-    '@schematics/angular',
-    'workspace',
-    {
+  const workspaceTree = await baseRunner
+    .runExternalSchematicAsync('@schematics/angular', 'workspace', {
       name: 'workspace',
       version: '7.1.2',
       newProjectRoot: 'projects',
-    },
-  );
+    })
+    .toPromise();
   addPackageJsonDependency(workspaceTree, {
     name: 'face-api.js',
     version: '^0.19.0',
     type: NodeDependencyType.Default,
   });
 
-  return baseRunner.runExternalSchematic(
-    '@schematics/angular',
-    'application',
-    {
-      ...appOptions,
-      name: 'example-app',
-    },
-    workspaceTree,
-  );
+  return baseRunner
+    .runExternalSchematicAsync(
+      '@schematics/angular',
+      'application',
+      {
+        ...appOptions,
+        name: 'example-app',
+      },
+      workspaceTree,
+    )
+    .toPromise();
 }
 
 describe('ngx-face-api-js-schematics migrations update-0-1-0', () => {
   it('update addDependencies works face-api.js', async () => {
     const runner = new SchematicTestRunner('schematics', migrationPath);
     const tree = await runner
-      .runSchematicAsync('update-0-1-0', {}, createTestApp())
+      .runSchematicAsync('update-0-1-0', {}, await createTestApp())
       .toPromise();
 
     expect(tree.files).toContain('/package.json');

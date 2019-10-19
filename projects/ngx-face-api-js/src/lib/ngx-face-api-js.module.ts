@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import * as faceapi from 'face-api.js';
@@ -25,7 +24,7 @@ export interface NgxFaceApiJsModuleOption {
     DetectSingleFaceImgDirective,
     DetectAllFacesVideoDirective,
   ],
-  imports: [BrowserModule, OverlayModule, PortalModule],
+  imports: [OverlayModule, PortalModule],
   exports: [
     DetectAllFacesImgDirective,
     DetectSingleFaceImgDirective,
