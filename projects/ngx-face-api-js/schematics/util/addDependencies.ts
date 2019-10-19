@@ -9,7 +9,7 @@ import {
   NodeDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { getLatestNodeVersion, NpmRegistryPackage } from './npmjs';
 export function addDependencies({
