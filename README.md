@@ -1,3 +1,9 @@
+**This package has not been maintained for a long time.**
+
+**Please use it by copying the code.**
+
+---
+
 # NgxFaceApiJs
 
 [![Build Status](https://travis-ci.com/kamiazya/ngx-face-api-js.svg?branch=master)](https://travis-ci.com/kamiazya/ngx-face-api-js) [![codecov](https://codecov.io/gh/kamiazya/ngx-face-api-js/branch/master/graph/badge.svg)](https://codecov.io/gh/kamiazya/ngx-face-api-js) [![CodeFactor](https://www.codefactor.io/repository/github/kamiazya/ngx-face-api-js/badge)](https://www.codefactor.io/repository/github/kamiazya/ngx-face-api-js) [![Maintainability](https://api.codeclimate.com/v1/badges/92a5ffa6ed3f4ab11869/maintainability)](https://codeclimate.com/github/kamiazya/ngx-face-api-js/maintainability) [![BCH compliance](https://bettercodehub.com/edge/badge/kamiazya/ngx-face-api-js?branch=master)](https://bettercodehub.com/) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkamiazya%2Fngx-face-api-js.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkamiazya%2Fngx-face-api-js?ref=badge_shield) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/ngx-face-api-js.svg)](https://badge.fury.io/js/ngx-face-api-js) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
